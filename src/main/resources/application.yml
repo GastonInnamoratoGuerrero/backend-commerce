@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: ms-commerce
+
+  datasource:
+    url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}
+    username: ${MYSQLUSER}
+    password: ${MYSQL_ROOT_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        hbm2ddl.auto: validate
+    open-in-view: false
+
+server:
+  port: 8082
+
+eureka:
+  instance:
+    hostname: ${HOSTNAME:localhost}
+    prefer-ip-address: true
+    #instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
+    
+#logging:
+  #level:
+    #root: INFO
+    #com.netflix.discovery: DEBUG
+    #com.netflix.eureka: DEBUG
+
+      #RAILWAY_PUBLIC_DOMAIN #http://localhost:8761/eureka
